@@ -6,29 +6,32 @@
 #foreach ($testResult in $classResults)
 <tr>
   <td class="method">
+  </br>
     #set ($testInstanceName = "")
     #if ($testResult.testName)
       #set ($testInstanceName = " ($testResult.testName)")
     #end
     #if ($testResult.method.description && $testResult.method.description.length() > 0)
     #set ($format = "methodName:")
-      <span class="description" title="$testResult.method.description">$testResult.method.description ($format $testResult.name $testInstanceName)</span>
+      <span class="description" title="$testResult.method.description">$testResult.method.description</span>
     #else
       $testResult.name$testInstanceName
     #end
   </td>
   <td class="duration">
-    $utils.formatDuration($testResult.startMillis, $testResult.endMillis)s
+  	</br>
+  	$testResult.name: $utils.formatDuration($testResult.startMillis, $testResult.endMillis)s
   </td>
   <td class="result">
+  	</br>
     ## Display the dependencies for skipped test methods.
     #if ($testResult.status == 3) ## 3 means skipped.
       #if( $utils.hasDependentGroups($testResult) )
         <i>$messages.getString("dependsOnGroups"): </i>
         <span class="dependency">$utils.getDependentGroups($testResult)</span>
-        <br />
       #end
       #if ($utils.hasDependentMethods($testResult))
+      	
         <i>$messages.getString("dependsOnMethods"): </i>
         <span class="dependency">$utils.getDependentMethods($testResult)</span>
       #end

@@ -75,10 +75,10 @@
 
 #if ($passedTests.size() > 0)
   <table class="resultsTable">
-    <tr><th colspan="3" class="header passed">$messages.getString("passedTests")</th></tr>
+    <tr><th colspan="4" class="header passed">$messages.getString("passedTests")</th></tr>
     #foreach ($testClass in $passedTests.keySet())
       <tr>
-        <td colspan="3" class="group">$testClass.name</td>
+        <td colspan="4" class="group">$testClass.name</td>
       </tr>
       #set ($classResults = $passedTests.get($testClass))
       #parse ("org/uncommons/reportng/templates/html/class-results.html.vm")
